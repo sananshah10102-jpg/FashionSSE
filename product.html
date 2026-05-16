@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Categories</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  background:#f8fafc;
+}
+
+/* TITLE */
+.title{
+  text-align:center;
+  font-size:40px;
+  margin:40px 0;
+  color:#0f172a;
+}
+
+/* FILTER BUTTONS */
+.filter-buttons{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.filter-buttons button{
+  padding:10px 18px;
+  margin:5px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background:#e2e8f0;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active{
+  background:linear-gradient(135deg,#7c3aed,#06b6d4);
+  color:white;
+}
+
+/* GRID */
+.product-container{
+  max-width: 1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:25px;
+  padding:10px;
+}
+
+/* CARD */
+.product-card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.product-card:hover{
+  transform:translateY(-6px);
+}
+
+/* IMAGE */
+.product-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+/* INFO */
+.info{
+  padding:15px;
+}
+
+.price{
+  color:#7c3aed;
+  font-weight:bold;
+  margin-top:10px;
+}
+.btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      color:white;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.3s ease;
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+    }
+    .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      color:white;
+      padding:6px 12px;
+      border-radius:50px;
+      font-size:12px;
+      font-weight:600;
+    }
+   
+    /* CART SYSTEM */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#0f172a;
+  color:white;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.cart-sidebar{
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:380px;
+  height:100%;
+  background:#fff;
+  box-shadow:-10px 0 30px rgba(0,0,0,0.2);
+  transition:0.3s;
+  padding:20px;
+  z-index:999;
+}
+
+.cart-sidebar.active{
+  right:0;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:15px 0;
+  padding-bottom:10px;
+  border-bottom:1px solid #eee;
+}
+
+.qty-box button{
+  padding:3px 8px;
+  border:none;
+  background:#e2e8f0;
+  cursor:pointer;
+}
+
+.qty-box span{
+  margin:0 8px;
+}
+
+.checkout-btn{
+  width:100%;
+  padding:12px;
+  background:linear-gradient(135deg,#7c3aed,#06b6d4);
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+.checkout-btn{
+      padding: 12px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .checkout-btn:hover{
+      background: #333;
+    }
+ .close-cart{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:red;
+  color:white;
+  border:none;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:16px;
+}
+
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .product-container{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .product-container{
+    grid-template-columns:repeat(1,1fr);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 class="title">Our Products</h1>
+
+<div class="topbar">
+  <h2>Our Products</h2>
+
+  <div class="cart-btn" onclick="toggleCart()">
+    🛒 Cart
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+</div>
+
+<!-- FILTER BUTTONS -->
+<div class="filter-buttons">
+  <button class="active" onclick="filter('all')">All</button>
+  <button onclick="filter('shirts')">Shirts</button>
+  <button onclick="filter('shoes')">Shoes</button>
+  <button onclick="filter('electronics')">Electronics</button>
+</div>
+
+<!-- PRODUCTS -->
+<div class="product-container">
+
+  <!-- SHIRTS -->
+  
+
+   <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/hollister shirt.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Watch</h2>
+        <p>Track fitness and notifications easily.</p>
+        <div class="price">$129</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+     
+    <!-- PRODUCT 1 -->
+    <div class="product-card shirts">
+      <div class="badge">New</div>
+      <div class="product-image">
+        <img src="images6/Men Eagle & Letter Graphic Tee.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Headphones</h2>
+        <p>High quality sound with deep bass.</p>
+        <div class="price">$99</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+    <!-- PRODUCT 3 -->
+    <div class="product-card shirts">
+      <div class="badge">Sale</div>
+      <div class="product-image">
+        <img src="images6/download (21).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Gaming Mouse</h2>
+        <p>Fast response RGB gaming mouse.</p>
+        <div class="price">$59</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card shirts">
+      <div class="badge">New</div>
+      <div class="product-image">
+        <img src="images6/download (20).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Wireless Keyboard</h2>
+        <p>Smooth typing experience with modern design.</p>
+        <div class="price">$79</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/download (19).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 6 -->
+    <div class="product-card shirts">
+      <div class="badge">Sale</div>
+      <div class="product-image">
+        <img src="image/download (17).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Laptop</h2>
+        <p>High performance laptop for work & gaming.</p>
+        <div class="price">$899</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 7 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men's New Linen Hawaiian Shirt 3D Fashion Short Sleeve Casual Urban Trend Summer Comfort Vacation.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+    
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Mens Chinese Ink Painting Lace Up High Low Hem Texture T-Shirts.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Mens Japanese Cherry Blossoms Print Tie Neck Cotton T-Shirts.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Multicolor Casual Collar   Colorblock,Letter  Embellished Medium Stretch  Teen Boys Clothing.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/The Men's Ins-Style Casual White Jacket Is Partially Spliced __With A Geometric Nomadic-Style Colorful Print Buttoned Open Jacket And An Elastic Waist Drawstring Trousers Two-Piece Set, Suitable For Going Out_.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/this forest tee shirt.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/download (22).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/SHEIN (2).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/hollister shirt.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Eagle & Letter Graphic Tee.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Floral Print Ombre Shirt Without Tee (1).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Floral Print Ombre Shirt Without Tee.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Gradient Color Button-Down Basic Short-Sleeve Shirt For Daily Wear.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Ombre Button Up Shirt Without Tee (1).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Ombre Button Up Shirt Without Tee (2).jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Ombre Button Up Shirt Without Tee.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card shirts">
+      <div class="badge">Hot</div>
+      <div class="product-image">
+        <img src="images6/Men Ombre Casual Summer Polyester Daily Regular Fit Short sleeve H-Line Shirt Collar shirts.jfif">
+      </div>
+      <div class="product-info">
+        <h2>Smart Phone</h2>
+        <p>Powerful camera and fast performance.</p>
+        <div class="price">$499</div>
+        <button class="btn" onclick="addToCart('Shirt', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+  <!-- SHOES -->
+  <div class="product-card shoes">
+    <img src="images6/Air Force 1 Custom Black White Gray Shoes Monochrome Shadow Essence Mens Womens.jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+      <button class="btn" onclick="addToCart('Shoes', 25)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/Air Force 1.jfif">
+    <div class="info">
+      <h3>Running Shoes</h3>
+      <p class="price">$75</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/Air jordan shoes.jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/Chicago’s.jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (19).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (20).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (21).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (22).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (23).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (24).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (25).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (26).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (27).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (28).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (29).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (30).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (31).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (32).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (33).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (34).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/download (35).jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <div class="product-card shoes">
+    <img src="images6/Férfi formális hegyes orrú, felcsúsztatható cipők csúszásmentes, légáteresztő csizmák esküvői üzlethez.jfif">
+    <div class="info">
+      <h3>Sports Shoes</h3>
+      <p class="price">$60</p>
+    </div>
+  </div>
+
+  <!-- ELECTRONICS -->
+  <div class="product-card electronics">
+    <img src="images6/Royal Shoe.jfif">
+    <div class="info">
+      <h3>Headphones</h3>
+      <p class="price">$99</p>
+    </div>
+  </div>
+
+  <div class="product-card electronics">
+    <img src="images6/Plus Size Men's Trendy Slip On Low Heel Boots Comfy Non Slip - Temu Spain (1).jfif">
+    <div class="info">
+      <h3>Smart Watch</h3>
+      <p class="price">$129</p>
+    </div>
+  </div>
+
+</div>
+
+
+</script>
+<div class="cart-sidebar" id="cart">
+        <button class="close-cart" onclick="toggleCart()">✖</button>
+  <h2>🛒 Your Cart</h2>
+
+  <div id="cartItems"></div>
+
+  <h3>Total: $<span id="total">0</span></h3>
+
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+
+</div>
+
+<!-- CHECKOUT POPUP -->
+<div id="checkoutBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+
+  <div style="background:white; width:90%; max-width:420px; margin:50px auto; padding:20px; border-radius:10px; position:relative;">
+
+  <button onclick="closeCheckout()" 
+  style="
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:red;
+    color:white;
+    border:none;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    cursor:pointer;
+  ">
+    ✖
+  </button>
+
+    <h2>Checkout</h2>
+
+    <div id="checkoutDetails"></div>
+
+    <h3>Total: $<span id="checkoutTotal"></span></h3>
+    <h3 style="margin-top:15px;">Delivery Information</h3>
+
+<input type="text" id="city" placeholder="Enter Your City"
+style="width:100%; padding:10px; margin-top:10px;">
+
+<input type="text" id="address" placeholder="Enter Delivery Address"
+style="width:100%; padding:10px; margin-top:10px;">
+
+<select id="delivery"
+style="width:100%; padding:10px; margin-top:10px;">
+
+  <option value="">Select Delivery Type</option>
+  <option>Standard Delivery (3-5 Days)</option>
+  <option>Express Delivery (1-2 Days)</option>
+
+</select>
+
+    <input type="text" id="fullname" placeholder="Full Name"
+    style="width:100%; padding:10px; margin-top:10px;">
+
+    <input type="text" id="cardnumber" placeholder="Card Number"
+    style="width:100%; padding:10px; margin-top:10px;">
+
+    <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)"
+    style="width:100%; padding:10px; margin-top:10px;">
+
+    <input type="text" id="cvv" placeholder="CVV"
+    style="width:100%; padding:10px; margin-top:10px;">
+
+    <select id="paymentMethod"
+    style="width:100%; padding:10px; margin-top:10px;">
+
+      <option value="">Select Payment Method</option>
+      <option>Visa Card</option>
+      <option>Master Card</option>
+      <option>JazzCash</option>
+      <option>Easypaisa</option>
+      <option>Cash on Delivery</option>
+
+    </select>
+
+    <button onclick="placeOrder()" class="checkout-btn"
+    style="margin-top:15px;">
+      Pay Now
+    </button>
+
+  </div>
+
+</div>
+
+<!-- JS FILTER -->
+<script>
+function filter(category){
+
+  let items = document.querySelectorAll(".product-card");
+  let buttons = document.querySelectorAll(".filter-buttons button");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  items.forEach(item => {
+    if(category === "all"){
+      item.style.display = "block";
+    }
+    else if(item.classList.contains(category)){
+      item.style.display = "block";
+    }
+    else{
+      item.style.display = "none";
+    }
+  });
+
+}
+</script>
+<script>
+
+let cart = [];
+
+function addToCart(name, price){
+
+  let item = cart.find(i => i.name === name);
+
+  if(item){
+    item.qty += 1;
+  } else {
+    cart.push({name, price, qty:1});
+  }
+
+  updateCart();
+}
+
+function updateCart(){
+
+  let cartItems = document.getElementById("cartItems");
+  cartItems.innerHTML = "";
+
+  let total = 0;
+  let count = 0;
+
+  cart.forEach((item, index) => {
+
+    total += item.price * item.qty;
+    count += item.qty;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <div>
+          <b>${item.name}</b><br>
+          $${item.price}
+        </div>
+
+        <div class="qty-box">
+          <button onclick="changeQty(${index},-1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${index},1)">+</button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("cartCount").innerText = count;
+}
+
+function changeQty(index, change){
+
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+
+  updateCart();
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function checkout(){
+
+  let box = document.getElementById("checkoutBox");
+  let details = document.getElementById("checkoutDetails");
+
+  let total = 0;
+  details.innerHTML = "";
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    details.innerHTML += `<p>${item.name} x ${item.qty}</p>`;
+  });
+
+  document.getElementById("checkoutTotal").innerText = total;
+
+  box.style.display = "block";
+}
+function closeCheckout(){
+  document.getElementById("checkoutBox").style.display = "none";
+}
+
+function placeOrder(){
+
+  let fullname = document.getElementById("fullname").value;
+  let cardnumber = document.getElementById("cardnumber").value;
+  let expiry = document.getElementById("expiry").value;
+  let cvv = document.getElementById("cvv").value;
+  let payment = document.getElementById("paymentMethod").value;
+  let city = document.getElementById("city").value;
+let address = document.getElementById("address").value;
+let delivery = document.getElementById("delivery").value;
+
+  if(fullname === "" || payment === "" || city === "" || address === "" || delivery === ""){
+    alert("Please fill all details!");
+    return;
+  }
+
+  alert("✅ Payment Successful! Order Placed.");
+
+  cart = [];
+
+  updateCart();
+
+  document.getElementById("checkoutBox").style.display = "none";
+}
+
+
+</script>
+
+<script src="checkout.js"></script>
+
+</body>
+</html>

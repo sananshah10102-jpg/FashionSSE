@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --dark-blue: #0A1D3C;
+    --light-grey: #E5E5E5;
+    --white: #FFF;
+    --light-peach: #F9E3BC;
+    --dark-grey: #3E3F43;
+    --light-black: #1D1D1D;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+/* ---Section One--- */
+.section{
+    min-height: 100vh;
+    width: 100%;
+}
+nav{
+    width: 80%;
+    height: 13vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+header{
+    width: 80%;
+    height: calc(100vh - 13vh);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.navlinks{
+    display: flex;
+}
+.header-image{
+    width: 22rem;
+}
+.logo{
+    font-size: 2.8rem;
+    color: var(--dark-blue);
+    font-family: "Allison", cursive;
+}
+.navlinks li{
+    list-style: none;
+}
+.navlinks li a{
+    text-decoration: none;
+    margin-left: 2.5rem;
+    color: var(--dark-grey);
+    font-size: 1rem;
+    letter-spacing: .03rem;
+    position: relative;
+}
+.header-heading{
+    font-size: 2.5rem;
+    position: relative;
+}
+.header-heading::before{
+    content: "New";
+    position: absolute;
+    top: -60px;
+    color: var(--dark-blue);
+    font-family: 'Allison', cursive;
+}
+.product-name{
+    font-size: 1.5rem;
+}
+.header-pricing{
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+.primary-btn, .secondary-btn{
+    font-size: 0.9rem;
+    border: none;
+    padding: 1rem 1.7rem;
+    transition: transform .5s ease-in-out;
+}
+.btn-container{
+    display: flex;
+    margin: 2rem;
+}
+.primary-btn{
+    background: var(--light-grey);
+}
+.secondary-btn{
+    background: var(--dark-blue);
+    color: var(--white);
+    transform: scale(1.1);
+}
+.primary-btn:hover, .section-two-btn:hover, .section-four-btn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.secondary-btn:hover{
+    transform: scale(1);
+}
+.navlinks li a::after, .navlinks li .active::after{
+    content: "";
+    background: var(--dark-grey);
+    position: absolute;
+    height: .15rem;
+    width: 100%;
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transition: transform .5s ease;
+    transform-origin: right;
+}
+.navlinks li a:hover::after, .navlinks li .active::after{
+    transform: scaleX(1.1);
+    transform-origin: left;
+}
+.line{
+    background: var(--dark-grey);
+    width: 2.5rem;
+    height: .2rem;
+    margin: .38rem;
+}
+.hamburger{
+    cursor: pointer;
+    display: none;
+}
+
+/* ---Section Two */
+.section-two{
+    display: flex;
+    align-items: center;
+}
+.section-two-container{
+    background: var(--light-peach);
+    width: 100%;
+    height: 50vh;
+    transform: skewY(-6deg);
+}
+.section-two-image{
+    width: 15rem;
+}
+.section-two-inner-container{
+    transform: skewY(6deg);
+    width: 80%;
+    margin: auto;
+}
+.section-two-container, .section-two-inner-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-two-heading{
+    color: var(--dark-grey);
+    font-size: 2.8rem;
+}
+.section-two-para{
+    font-size: 1rem;
+    color: var(--dark-grey);
+    line-height: 1.5rem;
+    max-width: 90%;
+}
+.section-two-pricing{
+    font-size: 1.6rem;
+    color: var(--dark-grey);
+    margin: .5rem 0;
+}
+.section-two-btn{
+    padding: .7rem 1.0rem;
+    border: .1rem solid var(--light-black);
+    font-size: 1.1rem;
+    background: transparent;
+    transition: transform .5s ease;
+}
+
+/* ---Section Three--- */
+.section-heading{
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+}
+.card-image{
+    width: 15rem;
+}
+.card{
+    background: var(--light-grey);
+    padding: 1rem;
+}
+.card-pricing{
+    font-size: 1.2rem;
+    margin-top: .2rem;
+    margin-bottom: 1.2rem;
+}
+
+/* ---Section Four--- */
+.section-four{
+    display: flex;
+    align-items: center;
+}
+.section-four-container{
+    width: 100%;
+    height: 70vh;
+    background-image: url(image/ddddd.jfif);
+    background-position: center;
+    background-size:fixed;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+.section-four-offer{
+    font-size: 3rem;
+    color: var(--light-peach);
+    font-family: 'Allison', cursive;
+    text-transform: uppercase;
+}
+.section-four-heading{
+    font-size: 3.1rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+.section-four-btn{
+    font-size: 1.0rem;
+    padding: 1rem 1.5rem;
+    background: var(--light-peach);
+    border: none;
+    transition: transform .5s ease;
+}
+.section-four-container::before{
+    content: "";
+    background: rgb(0, 0, 0, 0.544);
+    position: absolute;
+    inset: 0;
+}
+.section-four-container .content{
+    z-index: 5;
+}
+
+/* ---Section Five--- */
+.grid-card-container{
+    width: 60%;
+    height: 80vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.2rem;
+    grid-auto-rows: 15rem;
+}
+.grid-card{
+    background: var(--light-grey);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.grid-card:nth-child(1){
+    grid-row: 1/4;
+    background-image: url(image/SHEIN.jfif);
+}
+.grid-card:nth-child(2){
+    background-image: url(image/Summer\ Short\ Sleeve\ Shirt\ With\ Stripes\ And\ Printed\ Design\,\ Lapel\ Collar\ And\ Front\ Button\ Fastening.jfif);
+}
+.grid-card:nth-child(3){
+    grid-row: 1/3;
+    background-image: url(image/qqqqqq.jfif);
+}
+.grid-card:nth-child(4){
+    grid-row: 3/4;
+    background-image: url(image/SHEIN\ \(1\).jfif);
+}
+.grid-card:nth-child(5){
+    background-image: url(image/Men\ Striped\ &\ Geo\ Print\ Shirt.jfif);
+}
+.grid-card:nth-child(6){
+    background-image: url(image/download\ \(18\).jfif);
+}
+.grid-card::before{
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.544);
+    inset: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 1s ease-in-out;
+}
+.grid-card:hover::before{
+    transform: scaleX(1);
+    transform-origin: left;
+
+}
+.grid-card::after{
+    content: attr(collection);
+    position: absolute;
+    text-transform: uppercase;
+    background: var(--light-peach);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 1.7rem;
+    font-size: 1.1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+}
+.grid-card:hover::after{
+    opacity: 1;
+    visibility: visible;
+}
+/* ---Footer--- */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+}
+
+/* FOOTER */
+
+.premium-footer{
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #111827,
+    #1e293b
+  );
+  color: white;
+  padding: 100px 20px 30px;
+  overflow: hidden;
+}
+
+/* Glow Background */
+
+.premium-footer::before,
+.premium-footer::after{
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+}
+
+.premium-footer::before{
+  background: #7c3aed;
+  top: -100px;
+  left: -100px;
+}
+
+.premium-footer::after{
+  background: #06b6d4;
+  bottom: -120px;
+  right: -120px;
+}
+
+/* Wave Effect */
+
+.footer-wave{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(
+    to right,
+    #8b5cf6,
+    #06b6d4
+  );
+  clip-path: ellipse(70% 100% at 50% 0%);
+}
+
+/* Layout */
+
+.footer-container{
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 50px;
+}
+
+/* Brand */
+
+.footer-brand h1{
+  font-size: 38px;
+  background: linear-gradient(to right,#8b5cf6,#06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.footer-brand p{
+  color: #cbd5e1;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* Links */
+
+.footer-links h2,
+.footer-contact h2{
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.footer-links a{
+  display: block;
+  text-decoration: none;
+  color: #cbd5e1;
+  margin: 12px 0;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover{
+  color: #06b6d4;
+  transform: translateX(6px);
+}
+
+/* Contact */
+
+.footer-contact p{
+  color: #cbd5e1;
+  margin: 10px 0;
+}
+
+/* Social Icons */
+
+.social-icons{
+  margin-top: 20px;
+}
+
+.social-icons a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover{
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #06b6d4
+  );
+  transform: translateY(-5px);
+}
+
+/* Bottom */
+
+.footer-bottom{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 70px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+  font-size: 14px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.checkout-container {
+  width: 400px;
+  background: white;
+  padding: 30px;
+  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.checkout-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkout-container input,
+.checkout-container select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkout-container button {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.checkout-container button:hover {
+  background: #333;
+}
+
+#successMessage {
+  margin-top: 20px;
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+.checkout-btn{
+  padding: 12px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout-btn:hover{
+  background: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ---Media Queries--- */
+@media screen and (max-width: 500px) {
+
+    /* ---Section One--- */
+    .header-image{
+        display: none;
+    }
+    .navlinks{
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        background-color: var(--light-grey);
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        right: 100%;
+        z-index: 2;
+        gap: 2rem;
+        transition: .5s ease-in-out;
+    }
+    .navlinks-active{
+        right: 0;
+    }
+    .navlinks li a{
+        font-size: 1.3rem;
+        margin-left: 0;
+    }
+    .hamburger{
+        display: block;
+        z-index: 5;
+    }
+    .section .logo{
+        z-index: 5;
+    }
+    .header-heading{
+        font-size: 4rem;
+    }
+    header{
+        justify-content: flex-start;
+    }
+
+    /* ---Section Two--- */
+    .section-two-image{
+        display: none;
+    }
+    .section-two-heading{
+        font-size: 2.9rem;
+    }
+    .section-two-para{
+        font-size: .93rem;
+        max-width: 100%;
+    }
+    .section-two-pricing{
+        font-size: 1.4rem;
+    }
+    .section-two-btn{
+        font-size: 1rem;
+        padding: .7rem 1rem;
+    }
+    .section-two-container{
+        height: 60vh;
+    }
+    .section-two-inner-container{
+        width: 90%;
+    }
+    /* ---Section Three---    */
+    .card-image{
+        width: 17rem;
+    }
+
+    /* ---Section Four--- */
+    .section-four-heading{
+        font-size: 2.8rem;
+    }
+    .section-four-offer{
+        font-size: 3.3rem;
+    }
+    .section-four-btn{
+        font-size: 1rem;
+    }
+
+    /* ---Section Five--- */
+    .grid-card-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        width: 90%;
+    }
+    .grid-card:nth-child(1), .grid-card:nth-child(3){
+        grid-row: 1/2;
+    }
+}
+
+
